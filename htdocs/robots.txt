@@ -4,3 +4,4 @@ Allow: /public/demo/
 Allow: /index.php
 #Allow: /$
 Disallow: /
+#Gonzalo estuvo aqui
