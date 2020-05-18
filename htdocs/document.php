@@ -270,3 +270,4 @@ if ($readfile) {
 }
 
 if (is_object($db)) $db->close();
+#GONZALO ESTUVO AQUI
