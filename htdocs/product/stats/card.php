@@ -87,7 +87,7 @@ if (!$id && empty($ref))
     if ($type == '0')
     {
         $helpurl = 'EN:Module_Products|FR:Module_Produits|ES:M&oacute;dulo_Productos';
-        //$title=$langs->trans("StatisticsOfProducts");
+        
         $title = $langs->trans("Statistics");
     }
     elseif ($type == '1')
