@@ -991,8 +991,6 @@ if ((empty($id) && empty($ref)) || $action == 'add' || $action == 'request' || $
 
         dol_fiche_head();
 
-        //print '<span>'.$langs->trans('DelayToRequestCP',$object->getConfCP('delayForRequest')).'</span><br><br>';
-
         print '<table class="border centpercent">';
         print '<tbody>';
 
@@ -1004,7 +1002,7 @@ if ((empty($id) && empty($ref)) || $action == 'add' || $action == 'request' || $
         if (empty($user->rights->holiday->write_all))
         {
         	print $form->select_dolusers(($fuserid ? $fuserid : $user->id), 'fuserid', 0, '', 0, 'hierarchyme', '', '0,'.$conf->entity, 0, 0, $morefilter, 0, '', 'maxwidth300');
-        	//print '<input type="hidden" name="fuserid" value="'.($fuserid?$fuserid:$user->id).'">';
+        	
         }
         else print $form->select_dolusers(GETPOST('fuserid', 'int') ?GETPOST('fuserid', 'int') : $user->id, 'fuserid', 0, '', 0, '', '', '0,'.$conf->entity, 0, 0, $morefilter, 0, '', 'maxwidth300');
         print '</td>';
@@ -1133,7 +1131,6 @@ else
             $userRequest = new User($db);
             $userRequest->fetch($object->fk_user);
 
-            //print load_fiche_titre($langs->trans('TitreRequestCP'));
 
             // Si il y a une erreur
             if (GETPOST('error'))
