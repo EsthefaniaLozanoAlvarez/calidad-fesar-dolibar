@@ -1904,14 +1904,7 @@ else
 			$somethingshown = $formfile->numoffiles;
 
 			// Show links to link elements
-			//$linktoelem = $form->showLinkToObjectBlock($object, null, array('subscription'));
-			//$somethingshown = $form->showLinkedObjectBlock($object, '');
-
-			// Show links to link elements
-			/*$linktoelem = $form->showLinkToObjectBlock($object,array('order'));
-			 if ($linktoelem) print ($somethingshown?'':'<br>').$linktoelem;
-			 */
-
+			
 			// Shon online payment link
 			$useonlinepayment = (!empty($conf->paypal->enabled) || !empty($conf->stripe->enabled) || !empty($conf->paybox->enabled));
 
