@@ -497,7 +497,7 @@ if (empty($reshook))
 		$object->birth       = $birthdate;
 		$object->photo       = $photo;
 		$object->typeid      = $typeid;
-		//$object->note        = $comment;
+		
 		$object->morphy      = $morphy;
 		$object->user_id     = $userid;
 		$object->socid = $socid;
@@ -1770,25 +1770,7 @@ else
 					}
 				}
 
-				// Send card by email
-				// TODO Remove this to replace with a template
-				/*
-				if ($user->rights->adherent->creer)
-				{
-					if ($object->statut >= 1)
-					{
-						if ($object->email) print '<div class="inline-block divButAction"><a class="butAction" href="card.php?rowid='.$object->id.'&action=sendinfo">'.$langs->trans("SendCardByMail")."</a></div>\n";
-						else print '<div class="inline-block divButAction"><a class="butActionRefused classfortooltip" href="#" title="'.dol_escape_htmltag($langs->trans("NoEMail")).'">'.$langs->trans("SendCardByMail")."</a></div>\n";
-					}
-					else
-					{
-						print '<div class="inline-block divButAction"><font class="butActionRefused classfortooltip" href="#" title="'.dol_escape_htmltag($langs->trans("ValidateBefore")).'">'.$langs->trans("SendCardByMail")."</font></div>";
-					}
-				}
-				else
-				{
-					print '<div class="inline-block divButAction"><font class="butActionRefused classfortooltip" href="#" title="'.dol_escape_htmltag($langs->trans("NotEnoughPermissions")).'">'.$langs->trans("SendCardByMail")."</font></div>";
-				}*/
+				
 
 				// Modify
 				if ($user->rights->adherent->creer)
@@ -1913,8 +1895,6 @@ else
 
 			// Documents generes
 			$filename = dol_sanitizeFileName($object->ref);
-			//$filename =  'tmp_cards.php';
-			//$filedir = $conf->adherent->dir_output . '/' . get_exdir($object->id, 2, 0, 0, $object, 'member') . dol_sanitizeFileName($object->ref);
 			$filedir = $conf->adherent->dir_output.'/'.get_exdir(0, 0, 0, 0, $object, 'member');
 			$urlsource = $_SERVER['PHP_SELF'].'?id='.$object->id;
 			$genallowed = $user->rights->adherent->lire;
