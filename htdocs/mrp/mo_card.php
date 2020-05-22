@@ -83,10 +83,10 @@ $search_all = trim(GETPOST("search_all", par));
 $search = array();
 foreach ($object->fields as $key => $val)
 {
-	if (GETPOST('search_'.$key, par)) $search[$key] = GETPOST('search_'.$key, par);
+	if (GETPOST('search_'.$key, par)) {$search[$key] = GETPOST('search_'.$key, par);}
 }
 
-if (empty($action) && empty($id) && empty($ref)) $action = 'view';
+if (empty($action) && empty($id) && empty($ref)) {$action = 'view';}
 
 // Load object
 include DOL_DOCUMENT_ROOT.'/core/actions_fetchobject.inc.php'; // Must be include, not include_once.
@@ -122,7 +122,7 @@ $upload_dir = $conf->mrp->multidir_output[isset($object->entity) ? $object->enti
 
 $parameters = array();
 $reshook = $hookmanager->executeHooks('doActions', $parameters, $object, $action); // Note that $action and $object may have been modified by some hooks
-if ($reshook < 0) setEventMessages($hookmanager->error, $hookmanager->errors, 'errors');
+if ($reshook < 0) {setEventMessages($hookmanager->error, $hookmanager->errors, 'errors')};
 
 if (empty($reshook))
 {
@@ -132,7 +132,7 @@ if (empty($reshook))
 
     if (empty($backtopage) || ($cancel && empty($id))) {
     	if (empty($backtopage) || ($cancel && strpos($backtopage, '__ID__'))) {
-	    	if (empty($id) && (($action != 'add' && $action != 'create') || $cancel)) $backtopage = $backurlforlist;
+	    	if (empty($id) && (($action != 'add' && $action != 'create') || $cancel)) {$backtopage = $backurlforlist;}
     		else $backtopage = DOL_URL_ROOT.'/mrp/mo_card.php?id='.($id > 0 ? $id : '__ID__');
     	}
     }
@@ -207,8 +207,8 @@ if ($action == 'create')
 	print '<form method="POST" action="'.$_SERVER["PHP_SELF"].'">';
 	print '<input type="hidden" name="token" value="'.newToken().'">';
 	print '<input type="hidden" name="action" value="add">';
-	if ($backtopage) print '<input type="hidden" name="backtopage" value="'.$backtopage.'">';
-	if ($backtopageforcancel) print '<input type="hidden" name="backtopageforcancel" value="'.$backtopageforcancel.'">';
+	if ($backtopage) {print '<input type="hidden" name="backtopage" value="'.$backtopage.'">';}
+	if ($backtopageforcancel) {print '<input type="hidden" name="backtopageforcancel" value="'.$backtopageforcancel.'">';}
 
 	dol_fiche_head(array(), '');
 
@@ -311,8 +311,8 @@ if (($id || $ref) && $action == 'edit')
     print '<input type="hidden" name="token" value="'.newToken().'">';
 	print '<input type="hidden" name="action" value="update">';
 	print '<input type="hidden" name="id" value="'.$object->id.'">';
-	if ($backtopage) print '<input type="hidden" name="backtopage" value="'.$backtopage.'">';
-	if ($backtopageforcancel) print '<input type="hidden" name="backtopageforcancel" value="'.$backtopageforcancel.'">';
+	if ($backtopage) {print '<input type="hidden" name="backtopage" value="'.$backtopage.'">';}
+	if ($backtopageforcancel) {print '<input type="hidden" name="backtopageforcancel" value="'.$backtopageforcancel.'">';}
 
 	dol_fiche_head();
 
