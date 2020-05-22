@@ -1160,7 +1160,7 @@ else
             }
             print '<table class="nobordernopadding">';
             if ($object->photo) print '<tr><td><input type="checkbox" class="flat photodelete" name="deletephoto" id="photodelete"> '.$langs->trans("Delete").'<br><br></td></tr>';
-            //print '<tr><td>'.$langs->trans("PhotoFile").'</td></tr>';
+           
             print '<tr><td><input type="file" class="flat" name="photo" id="photoinput"></td></tr>';
             print '</table>';
 
@@ -1262,12 +1262,12 @@ else
         // Unsubscribe opt-out
         if (!empty($conf->mailing->enabled))
         {
-        	//print 'eee'.$object->email;
+        	
         	$noemail = $object->no_email;
         	if (empty($noemail) && !empty($object->email))
         	{
         		$sql = "SELECT COUNT(*) as nb FROM ".MAIN_DB_PREFIX."mailing_unsubscribe WHERE entity IN (".getEntity('mailing').") AND email = '".$db->escape($object->email)."'";
-        		//print $sql;
+        		
         		$resql = $db->query($sql);
         		if ($resql)
         		{
