@@ -56,14 +56,15 @@ require_once DOL_DOCUMENT_ROOT.'/bom/class/bom.class.php';
 $langs->loadLangs(array("mrp", "other"));
 
 // Get parameters
+const par='alpha';
 $id = GETPOST('id', 'int');
-$ref        = GETPOST('ref', 'alpha');
+$ref        = GETPOST('ref', par);
 $action = GETPOST('action', 'aZ09');
-$confirm    = GETPOST('confirm', 'alpha');
+$confirm    = GETPOST('confirm', par);
 $cancel     = GETPOST('cancel', 'aZ09');
 $contextpage = GETPOST('contextpage', 'aZ') ?GETPOST('contextpage', 'aZ') : 'mocard'; // To manage different context of search
-$backtopage = GETPOST('backtopage', 'alpha');
-$backtopageforcancel = GETPOST('backtopageforcancel', 'alpha');
+$backtopage = GETPOST('backtopage', par);
+$backtopageforcancel = GETPOST('backtopageforcancel', par);
 //$lineid   = GETPOST('lineid', 'int');
 
 // Initialize technical objects
@@ -79,11 +80,11 @@ $extrafields->fetch_name_optionals_label($object->table_element);
 $search_array_options = $extrafields->getOptionalsFromPost($object->table_element, '', 'search_');
 
 // Initialize array of search criterias
-$search_all = trim(GETPOST("search_all", 'alpha'));
+$search_all = trim(GETPOST("search_all", par));
 $search = array();
 foreach ($object->fields as $key => $val)
 {
-	if (GETPOST('search_'.$key, 'alpha')) $search[$key] = GETPOST('search_'.$key, 'alpha');
+	if (GETPOST('search_'.$key, par)) $search[$key] = GETPOST('search_'.$key, par);
 }
 
 if (empty($action) && empty($id) && empty($ref)) $action = 'view';
