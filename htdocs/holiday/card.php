@@ -442,7 +442,7 @@ if (empty($reshook))
 	            $message .= $langs->transnoentities("HolidaysToValidateBody")."\n";
 
 	            $delayForRequest = $object->getConfCP('delayForRequest');
-	            //$delayForRequest = $delayForRequest * (60*60*24);
+	           
 
 	            $nextMonth = dol_time_plus_duree($now, $delayForRequest, 'd');
 
@@ -867,21 +867,7 @@ if (empty($reshook))
 	    }
 	}
 
-	/*
-	// Actions when printing a doc from card
-	include DOL_DOCUMENT_ROOT.'/core/actions_printing.inc.php';
-
-	// Actions to send emails
-	$triggersendname = 'HOLIDAY_SENTBYMAIL';
-	$autocopy='MAIN_MAIL_AUTOCOPY_HOLIDAY_TO';
-	$trackid='leav'.$object->id;
-	include DOL_DOCUMENT_ROOT.'/core/actions_sendmails.inc.php';
-
-	// Actions to build doc
-	$upload_dir = $conf->holiday->dir_output;
-	$permissiontoadd = $user->rights->holiday->creer;
-	include DOL_DOCUMENT_ROOT.'/core/actions_builddoc.inc.php';
-	*/
+	
 }
 
 
@@ -943,8 +929,7 @@ if ((empty($id) && empty($ref)) || $action == 'add' || $action == 'request' || $
 
 
         $delayForRequest = $object->getConfCP('delayForRequest');
-        //$delayForRequest = $delayForRequest * (60*60*24);
-
+        
         $nextMonth = dol_time_plus_duree($now, $delayForRequest, 'd');
 
 		print '<script type="text/javascript">
@@ -993,8 +978,7 @@ if ((empty($id) && empty($ref)) || $action == 'add' || $action == 'request' || $
 				$nb_holiday += $nb_type;
 
 				$out .= ' - ' . ($langs->trans($val['code']) != $val['code'] ? $langs->trans($val['code']) : $val['label']) .': <strong>'.($nb_type ?price2num($nb_type) : 0).'</strong><br>';
-				//$out .= ' - '.$val['label'].': <strong>'.($nb_type ?price2num($nb_type) : 0).'</strong><br>';
-			}
+				}
 	        print $langs->trans('SoldeCPUser', round($nb_holiday, 5)).'<br>';
 			print $out;
 
