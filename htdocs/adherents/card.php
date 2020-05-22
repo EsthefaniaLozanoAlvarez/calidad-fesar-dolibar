@@ -310,14 +310,11 @@ if (empty($reshook))
 					$object->socialnetworks[$key] = trim(GETPOST($key, 'alphanohtml'));
 				}
 			}
-			//$object->skype       = trim(GETPOST("skype", 'alpha'));
-			//$object->twitter     = trim(GETPOST("twitter", 'alpha'));
-			//$object->facebook    = trim(GETPOST("facebook", 'alpha'));
-			//$object->linkedin    = trim(GETPOST("linkedin", 'alpha'));
+			
 			$object->birth       = $birthdate;
 
 			$object->typeid      = GETPOST("typeid", 'int');
-			//$object->note        = trim(GETPOST("comment","alpha"));
+			
 			$object->morphy      = GETPOST("morphy", 'alpha');
 
 			if (GETPOST('deletephoto', 'alpha')) $object->photo = '';
@@ -456,15 +453,12 @@ if (empty($reshook))
 		$phone = GETPOST("phone", 'alpha');
 		$phone_perso = GETPOST("phone_perso", 'alpha');
 		$phone_mobile = GETPOST("phone_mobile", 'alpha');
-		// $skype=GETPOST("member_skype", 'alpha');
-		// $twitter=GETPOST("member_twitter", 'alpha');
-		// $facebook=GETPOST("member_facebook", 'alpha');
-        // $linkedin=GETPOST("member_linkedin", 'alpha');
+		
 		$email = preg_replace('/\s+/', '', GETPOST("member_email", 'alpha'));
 		$login = GETPOST("member_login", 'alpha');
 		$pass = GETPOST("password", 'alpha');
 		$photo = GETPOST("photo", 'alpha');
-		//$comment=GETPOST("comment",'none');
+		
 		$morphy = GETPOST("morphy", 'alpha');
 		$subscription = GETPOST("subscription", 'alpha');
 		$public = GETPOST("public", 'alpha');
@@ -495,10 +489,7 @@ if (empty($reshook))
 			}
 		}
 
-		// $object->skype       = $skype;
-		// $object->twitter     = $twitter;
-		// $object->facebook    = $facebook;
-		// $object->linkedin    = $linkedin;
+		
 
 		$object->email       = $email;
 		$object->login       = $login;
