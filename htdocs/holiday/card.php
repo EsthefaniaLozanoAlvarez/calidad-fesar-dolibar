@@ -56,7 +56,7 @@ $now=dol_now();
 $childids = $user->getAllChildIds(1);
 
 $morefilter = 'AND employee = 1';
-if (! empty($conf->global->HOLIDAY_FOR_NON_SALARIES_TOO)) $morefilter = '';
+if (! empty($conf->global->HOLIDAY_FOR_NON_SALARIES_TOO)) {$morefilter = '';}
 
 $error = 0;
 
@@ -73,8 +73,8 @@ if (($id > 0) || $ref)
 
     // Check current user can read this leave request
     $canread = 0;
-    if (!empty($user->rights->holiday->read_all)) $canread = 1;
-    if (!empty($user->rights->holiday->read) && in_array($object->fk_user, $childids)) $canread = 1;
+    if (!empty($user->rights->holiday->read_all)) {$canread = 1;}
+    if (!empty($user->rights->holiday->read) && in_array($object->fk_user, $childids)) {$canread = 1;}
     if (!$canread)
     {
         accessforbidden();
@@ -82,15 +82,15 @@ if (($id > 0) || $ref)
 }
 
 $cancreate = 0;
-if (!empty($user->rights->holiday->write_all)) $cancreate = 1;
-if (!empty($user->rights->holiday->write) && in_array($fuserid, $childids)) $cancreate = 1;
+if (!empty($user->rights->holiday->write_all)) {$cancreate = 1;}
+if (!empty($user->rights->holiday->write) && in_array($fuserid, $childids)) {$cancreate = 1;}
 
 $candelete = 0;
-if (!empty($user->rights->holiday->delete)) $candelete = 1;
-if ($object->statut == Holiday::STATUS_DRAFT && $user->rights->holiday->write && in_array($object->fk_user, $childids)) $candelete = 1;
+if (!empty($user->rights->holiday->delete)) {$candelete = 1;}
+if ($object->statut == Holiday::STATUS_DRAFT && $user->rights->holiday->write && in_array($object->fk_user, $childids)) {$candelete = 1;}
 
 // Protection if external user
-if ($user->socid) $socid=$user->socid;
+if ($user->socid) {$socid=$user->socid;}
 $result = restrictedArea($user, 'holiday', $object->id, 'holiday');
 
 
@@ -100,7 +100,7 @@ $result = restrictedArea($user, 'holiday', $object->id, 'holiday');
 
 $parameters = array('socid' => $socid);
 $reshook = $hookmanager->executeHooks('doActions', $parameters, $object, $action); // Note that $action and $object may have been modified by some hooks
-if ($reshook < 0) setEventMessages($hookmanager->error, $hookmanager->errors, 'errors');
+if ($reshook < 0) {setEventMessages($hookmanager->error, $hookmanager->errors, 'errors');}
 
 if (empty($reshook))
 {
@@ -139,9 +139,9 @@ if (empty($reshook))
 		    $endhalfday = GETPOST('endhalfday');
 		    $type = GETPOST('type');
 		    $halfday = 0;
-		    if ($starthalfday == 'afternoon' && $endhalfday == 'morning') $halfday = 2;
-		    elseif ($starthalfday == 'afternoon') $halfday = -1;
-		    elseif ($endhalfday == 'morning') $halfday = 1;
+		    if ($starthalfday == 'afternoon' && $endhalfday == 'morning') {$halfday = 2;}
+		    elseif ($starthalfday == 'afternoon') {$halfday = -1;}
+		    elseif ($endhalfday == 'morning') {$halfday = 1;}
 
 		    $valideur = GETPOST('valideur', 'int');
 		    $description = trim(GETPOST('description'));
