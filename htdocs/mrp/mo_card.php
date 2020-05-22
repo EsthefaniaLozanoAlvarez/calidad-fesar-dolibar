@@ -564,17 +564,12 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 
     	if (empty($reshook))
     	{
-    	    // Send
-    		//if (empty($user->socid)) {
-    		//	print '<a class="butAction" href="' . $_SERVER["PHP_SELF"] . '?id=' . $object->id . '&action=presend&mode=init#formmailbeforetitle">' . $langs->trans('SendMail') . '</a>'."\n";
-    		//}
-
+    	    
     		// Back to draft
     		if ($object->status == $object::STATUS_VALIDATED)
     		{
 	    		if ($permissiontoadd)
 	    		{
-	    			// TODO Add test that production has not started
 	    			print '<a class="butAction" href="'.$_SERVER['PHP_SELF'].'?id='.$object->id.'&action=confirm_setdraft&confirm=yes">'.$langs->trans("SetToDraft").'</a>';
 	    		}
     		}
