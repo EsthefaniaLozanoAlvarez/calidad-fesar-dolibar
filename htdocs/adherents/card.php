@@ -123,7 +123,7 @@ $hookmanager->initHooks(array('membercard', 'globalcard'));
 
 $parameters = array('id'=>$id, 'rowid'=>$id, 'objcanvas'=>$objcanvas, 'confirm'=>$confirm);
 $reshook = $hookmanager->executeHooks('doActions', $parameters, $object, $action); // Note that $action and $object may have been modified by some hooks
-if ($reshook < 0) setEventMessages($hookmanager->error, $hookmanager->errors, 'errors');
+if ($reshook < 0) {setEventMessages($hookmanager->error, $hookmanager->errors, 'errors');}
 
 if (empty($reshook))
 {
@@ -154,7 +154,7 @@ if (empty($reshook))
 			if ($userid != $object->user_id)	// If link differs from currently in database
 			{
 				$result = $object->setUserId($userid);
-				if ($result < 0) dol_print_error($object->db, $object->error);
+				if ($result < 0) {dol_print_error($object->db, $object->error);}
 				$action = '';
 			}
 		}
@@ -188,7 +188,7 @@ if (empty($reshook))
 				if (!$error)
 				{
 					$result = $object->setThirdPartyId($socid);
-					if ($result < 0) dol_print_error($object->db, $object->error);
+					if ($result < 0) {dol_print_error($object->db, $object->error);}
 					$action = '';
 				}
 			}
@@ -317,8 +317,8 @@ if (empty($reshook))
 			
 			$object->morphy      = GETPOST("morphy", 'alpha');
 
-			if (GETPOST('deletephoto', 'alpha')) $object->photo = '';
-			elseif (!empty($_FILES['photo']['name'])) $object->photo = dol_sanitizeFileName($_FILES['photo']['name']);
+			if (GETPOST('deletephoto', 'alpha')) {$object->photo = '';}
+			elseif (!empty($_FILES['photo']['name'])) {$object->photo = dol_sanitizeFileName($_FILES['photo']['name']);}
 
 			// Get status and public property
 			$object->statut      = GETPOST("statut", 'alpha');
@@ -326,20 +326,20 @@ if (empty($reshook))
 
 			// Fill array 'array_options' with data from add form
 			$ret = $extrafields->setOptionalsFromPost(null, $object);
-			if ($ret < 0) $error++;
+			if ($ret < 0) {$error++;}
 
 			// Check if we need to also synchronize user information
 			$nosyncuser = 0;
 			if ($object->user_id)	// If linked to a user
 			{
-				if ($user->id != $object->user_id && empty($user->rights->user->user->creer)) $nosyncuser = 1; // Disable synchronizing
+				if ($user->id != $object->user_id && empty($user->rights->user->user->creer)) {$nosyncuser = 1;} // Disable synchronizing
 			}
 
 			// Check if we need to also synchronize password information
 			$nosyncuserpass = 0;
 			if ($object->user_id)	// If linked to a user
 			{
-				if ($user->id != $object->user_id && empty($user->rights->user->user->password)) $nosyncuserpass = 1; // Disable synchronizing
+				if ($user->id != $object->user_id && empty($user->rights->user->user->password)) {$nosyncuserpass = 1;} // Disable synchronizing
 			}
 
 			$result = $object->update($user, 0, $nosyncuser, $nosyncuserpass);
@@ -424,7 +424,7 @@ if (empty($reshook))
 
 	if ($action == 'add' && $user->rights->adherent->creer)
 	{
-		if ($canvas) $object->canvas = $canvas;
+		if ($canvas) {$object->canvas = $canvas;}
 		$birthdate = '';
 		if (isset($_POST["birthday"]) && $_POST["birthday"]
 				&& isset($_POST["birthmonth"]) && $_POST["birthmonth"]
@@ -505,7 +505,7 @@ if (empty($reshook))
 
 		// Fill array 'array_options' with data from add form
 		$ret = $extrafields->setOptionalsFromPost(null, $object);
-		if ($ret < 0) $error++;
+		if ($ret < 0) {$error++;}
 
 		// Check parameters
 		if (empty($morphy) || $morphy == "-1") {
