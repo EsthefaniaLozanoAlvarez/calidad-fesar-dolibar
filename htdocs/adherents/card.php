@@ -1422,12 +1422,12 @@ else
 			if ($object->morphy == 'mor')
 			{
 				$companyname = $object->company;
-				if (!empty($fullname)) $companyalias = $fullname;
+				if (!empty($fullname)) {$companyalias = $fullname;}
 			}
 			else
 			{
 				$companyname = $fullname;
-				if (!empty($object->company)) $companyalias = $object->company;
+				if (!empty($object->company)) {$companyalias = $object->company;}
 			}
 
 			// Create a form array
@@ -1462,7 +1462,7 @@ else
 			$arraydefaultmessage = null;
 			$labeltouse = $conf->global->ADHERENT_EMAIL_TEMPLATE_MEMBER_VALIDATION;
 
-			if (!empty($labeltouse)) $arraydefaultmessage = $formmail->getEMailTemplate($db, 'member', $user, $outputlangs, 0, 1, $labeltouse);
+			if (!empty($labeltouse)) {$arraydefaultmessage = $formmail->getEMailTemplate($db, 'member', $user, $outputlangs, 0, 1, $labeltouse);}
 
 			if (!empty($labeltouse) && is_object($arraydefaultmessage) && $arraydefaultmessage->id > 0)
 			{
@@ -1490,7 +1490,7 @@ else
 
 			// Create form popup
 			$formquestion = array();
-			if ($object->email) $formquestion[] = array('type' => 'checkbox', 'name' => 'send_mail', 'label' => $label, 'value' => ($conf->global->ADHERENT_DEFAULT_SENDINFOBYMAIL ?true:false));
+			if ($object->email) {$formquestion[] = array('type' => 'checkbox', 'name' => 'send_mail', 'label' => $label, 'value' => ($conf->global->ADHERENT_DEFAULT_SENDINFOBYMAIL ?true:false));}
 			if (!empty($conf->mailman->enabled) && !empty($conf->global->ADHERENT_USE_MAILMAN)) {
 				$formquestion[] = array('type'=>'other', 'label'=>$langs->transnoentitiesnoconv("SynchroMailManEnabled"), 'value'=>'');
 			}
@@ -1523,7 +1523,7 @@ else
 			$arraydefaultmessage = null;
 			$labeltouse = $conf->global->ADHERENT_EMAIL_TEMPLATE_CANCELATION;
 
-			if (!empty($labeltouse)) $arraydefaultmessage = $formmail->getEMailTemplate($db, 'member', $user, $outputlangs, 0, 1, $labeltouse);
+			if (!empty($labeltouse)) {$arraydefaultmessage = $formmail->getEMailTemplate($db, 'member', $user, $outputlangs, 0, 1, $labeltouse);}
 
 			if (!empty($labeltouse) && is_object($arraydefaultmessage) && $arraydefaultmessage->id > 0)
 			{
@@ -1551,8 +1551,8 @@ else
 
 			// Create an array
 			$formquestion = array();
-			if ($object->email) $formquestion[] = array('type' => 'checkbox', 'name' => 'send_mail', 'label' => $label, 'value' => (!empty($conf->global->ADHERENT_DEFAULT_SENDINFOBYMAIL) ? 'true' : 'false'));
-			if ($backtopage)    $formquestion[] = array('type' => 'hidden', 'name' => 'backtopage', 'value' => ($backtopage != '1' ? $backtopage : $_SERVER["HTTP_REFERER"]));
+			if ($object->email) {$formquestion[] = array('type' => 'checkbox', 'name' => 'send_mail', 'label' => $label, 'value' => (!empty($conf->global->ADHERENT_DEFAULT_SENDINFOBYMAIL) ? 'true' : 'false'));}
+			if ($backtopage)    {$formquestion[] = array('type' => 'hidden', 'name' => 'backtopage', 'value' => ($backtopage != '1' ? $backtopage : $_SERVER["HTTP_REFERER"]));}
 			print $form->formconfirm("card.php?rowid=".$id, $langs->trans("ResiliateMember"), $langs->trans("ConfirmResiliateMember"), "confirm_resign", $formquestion, 'no', 1, 240);
 		}
 
@@ -1560,7 +1560,7 @@ else
 		if ($action == 'delete')
 		{
 			$formquestion = array();
-			if ($backtopage) $formquestion[] = array('type' => 'hidden', 'name' => 'backtopage', 'value' => ($backtopage != '1' ? $backtopage : $_SERVER["HTTP_REFERER"]));
+			if ($backtopage) {$formquestion[] = array('type' => 'hidden', 'name' => 'backtopage', 'value' => ($backtopage != '1' ? $backtopage : $_SERVER["HTTP_REFERER"]));}
 			print $form->formconfirm("card.php?rowid=".$id, $langs->trans("DeleteMember"), $langs->trans("ConfirmDeleteMember"), "confirm_delete", $formquestion, 'no', 1);
 		}
 
@@ -1576,8 +1576,8 @@ else
 		}
 
 		$rowspan = 17;
-		if (empty($conf->global->ADHERENT_LOGIN_NOT_REQUIRED)) $rowspan++;
-		if (!empty($conf->societe->enabled)) $rowspan++;
+		if (empty($conf->global->ADHERENT_LOGIN_NOT_REQUIRED)) {$rowspan++;}
+		if (!empty($conf->societe->enabled)) {$rowspan++;}
 
 		$linkback = '<a href="'.DOL_URL_ROOT.'/adherents/list.php?restore_lastsearch_values=1">'.$langs->trans("BackToList").'</a>';
 
@@ -1605,7 +1605,7 @@ else
 		// Gender
 		print '<tr><td>'.$langs->trans("Gender").'</td>';
 		print '<td>';
-		if ($object->gender) print $langs->trans("Gender".$object->gender);
+		if ($object->gender) {print $langs->trans("Gender".$object->gender);}
 		print '</td></tr>';
 
 		// Company
@@ -1619,11 +1619,11 @@ else
 		if (empty($conf->global->ADHERENT_LOGIN_NOT_REQUIRED))
 		{
 			print '<tr><td>'.$langs->trans("Password").'</td><td>'.preg_replace('/./i', '*', $object->pass);
-			if ($object->pass) print preg_replace('/./i', '*', $object->pass);
+			if ($object->pass) {print preg_replace('/./i', '*', $object->pass);}
 			else
 			{
-			    if ($user->admin) print $langs->trans("Crypted").': '.$object->pass_indatabase_crypted;
-			    else print $langs->trans("Hidden");
+			    if ($user->admin) {print $langs->trans("Crypted").': '.$object->pass_indatabase_crypted;}
+			    else {print $langs->trans("Hidden");}
 			}
 			if ((!empty($object->pass) || !empty($object->pass_crypted)) && empty($object->user_id))
 			{
@@ -1652,12 +1652,12 @@ else
             elseif (!$adht->subscription)
 			{
 				print $langs->trans("SubscriptionNotRecorded");
-				if ($object->statut > 0) print " ".img_warning($langs->trans("Late")); // displays delay Pictogram only if not a draft and not terminated
+				if ($object->statut > 0) {print " ".img_warning($langs->trans("Late"));} // displays delay Pictogram only if not a draft and not terminated
 			}
 			else
 			{
 				print $langs->trans("SubscriptionNotReceived");
-				if ($object->statut > 0) print " ".img_warning($langs->trans("Late")); // displays delay Pictogram only if not a draft and not terminated
+				if ($object->statut > 0) {print " ".img_warning($langs->trans("Late"));} // displays delay Pictogram only if not a draft and not terminated
 			}
 		}
 		print '</td></tr>';
