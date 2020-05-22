@@ -832,7 +832,7 @@ if (empty($reshook))
 
 	            // Subject
 				$societeName = $conf->global->MAIN_INFO_SOCIETE_NOM;
-	            if (!empty($conf->global->MAIN_APPLICATION_TITLE)) $societeName = $conf->global->MAIN_APPLICATION_TITLE;
+	            if (!empty($conf->global->MAIN_APPLICATION_TITLE)) {$societeName = $conf->global->MAIN_APPLICATION_TITLE;}
 
 	            $subject = $societeName." - ".$langs->transnoentitiesnoconv("HolidaysCanceled");
 
@@ -1004,7 +1004,7 @@ if ((empty($id) && empty($ref)) || $action == 'add' || $action == 'request' || $
         	print $form->select_dolusers(($fuserid ? $fuserid : $user->id), 'fuserid', 0, '', 0, 'hierarchyme', '', '0,'.$conf->entity, 0, 0, $morefilter, 0, '', 'maxwidth300');
         	
         }
-        else print $form->select_dolusers(GETPOST('fuserid', 'int') ?GETPOST('fuserid', 'int') : $user->id, 'fuserid', 0, '', 0, '', '', '0,'.$conf->entity, 0, 0, $morefilter, 0, '', 'maxwidth300');
+        else {print $form->select_dolusers(GETPOST('fuserid', 'int') ?GETPOST('fuserid', 'int') : $user->id, 'fuserid', 0, '', 0, '', '', '0,'.$conf->entity, 0, 0, $morefilter, 0, '', 'maxwidth300');}
         print '</td>';
         print '</tr>';
 
@@ -1070,12 +1070,12 @@ if ((empty($id) && empty($ref)) || $action == 'add' || $action == 'request' || $
 
         $object = new Holiday($db);
         $include_users = $object->fetch_users_approver_holiday();
-        if (empty($include_users)) print img_warning().' '.$langs->trans("NobodyHasPermissionToValidateHolidays");
+        if (empty($include_users)) {print img_warning().' '.$langs->trans("NobodyHasPermissionToValidateHolidays");}
         else
         {
         	$defaultselectuser = (empty($user->fk_user_holiday_validator) ? $user->fk_user : $user->fk_user_holiday_validator); // Will work only if supervisor has permission to approve so is inside include_users
-        	if (!empty($conf->global->HOLIDAY_DEFAULT_VALIDATOR)) $defaultselectuser = $conf->global->HOLIDAY_DEFAULT_VALIDATOR; // Can force default approver
-        	if (GETPOST('valideur', 'int') > 0) $defaultselectuser = GETPOST('valideur', 'int');
+        	if (!empty($conf->global->HOLIDAY_DEFAULT_VALIDATOR)) {$defaultselectuser = $conf->global->HOLIDAY_DEFAULT_VALIDATOR;} // Can force default approver
+        	if (GETPOST('valideur', 'int') > 0) {$defaultselectuser = GETPOST('valideur', 'int');}
         	$s = $form->select_dolusers($defaultselectuser, "valideur", 1, "", 0, $include_users);
         	print $form->textwithpicto($s, $langs->trans("AnyOtherInThisListCanValidate"));
         }
@@ -1176,7 +1176,7 @@ else
 
                 if (($action == 'edit' && $object->statut == Holiday::STATUS_DRAFT) || ($action == 'editvalidator'))
                 {
-                	if ($action == 'edit' && $object->statut == Holiday::STATUS_DRAFT) $edit = true;
+                	if ($action == 'edit' && $object->statut == Holiday::STATUS_DRAFT) {$edit = true;}
 
                     print '<form method="post" action="'.$_SERVER['PHP_SELF'].'?id='.$object->id.'">'."\n";
                     print '<input type="hidden" name="token" value="'.newToken().'" />'."\n";
@@ -1268,8 +1268,8 @@ else
                 $htmlhelp = $langs->trans('NbUseDaysCPHelp');
                 $includesaturday = (isset($conf->global->MAIN_NON_WORKING_DAYS_INCLUDE_SATURDAY) ? $conf->global->MAIN_NON_WORKING_DAYS_INCLUDE_SATURDAY : 1);
                 $includesunday   = (isset($conf->global->MAIN_NON_WORKING_DAYS_INCLUDE_SUNDAY) ? $conf->global->MAIN_NON_WORKING_DAYS_INCLUDE_SUNDAY : 1);
-                if ($includesaturday) $htmlhelp.='<br>'.$langs->trans("DayIsANonWorkingDay", $langs->trans("Saturday"));
-                if ($includesunday) $htmlhelp.='<br>'.$langs->trans("DayIsANonWorkingDay", $langs->trans("Sunday"));
+                if ($includesaturday) {$htmlhelp.='<br>'.$langs->trans("DayIsANonWorkingDay", $langs->trans("Saturday"));}
+                if ($includesunday) {$htmlhelp.='<br>'.$langs->trans("DayIsANonWorkingDay", $langs->trans("Sunday"));}
                 print $form->textwithpicto($langs->trans('NbUseDaysCP'), $htmlhelp);
                 print '</td>';
                 print '<td>'.num_open_day($object->date_debut_gmt, $object->date_fin_gmt, 0, 1, $object->halfday).'</td>';
@@ -1331,8 +1331,8 @@ else
                 if (!$edit && $action != 'editvalidator') {
                     print '<tr>';
                     print '<td class="titlefield">';
-                    if ($object->statut == Holiday::STATUS_APPROVED || $object->statut == Holiday::STATUS_CANCELED) print $langs->trans('ApprovedBy');
-                    else print $langs->trans('ReviewedByCP');
+                    if ($object->statut == Holiday::STATUS_APPROVED || $object->statut == Holiday::STATUS_CANCELED) {print $langs->trans('ApprovedBy');}
+                    else {print $langs->trans('ReviewedByCP');}
                     print '</td>';
                     print '<td>'.$valideur->getNomUrl(-1);
                     $include_users = $object->fetch_users_approver_holiday();
@@ -1351,7 +1351,7 @@ else
                     {
                         $include_users[] = $object->fk_validator;
                     }
-                    if (empty($include_users)) print img_warning().' '.$langs->trans("NobodyHasPermissionToValidateHolidays");
+                    if (empty($include_users)) {print img_warning().' '.$langs->trans("NobodyHasPermissionToValidateHolidays");}
                     else
                     {
                     	$arrayofvalidatorstoexclude = (($user->admin || ($user->id != $userRequest->id)) ? '' : array($user->id)); // Nobody if we are admin or if we are not the user of the leave.
@@ -1485,8 +1485,8 @@ else
                     }
                     if (($user->id == $object->fk_validator || in_array($object->fk_user, $childids) || !empty($user->rights->holiday->write_all)) && ($object->statut == 2 || $object->statut == 3))	// Status validated or approved
                     {
-                    	if (($object->date_debut > dol_now()) || $user->admin) print '<a href="'.$_SERVER["PHP_SELF"].'?id='.$object->id.'&action=cancel" class="butAction">'.$langs->trans("ActionCancelCP").'</a>';
-                    	else print '<a href="#" class="butActionRefused classfortooltip" title="'.$langs->trans("HolidayStarted").'">'.$langs->trans("ActionCancelCP").'</a>';
+                    	if (($object->date_debut > dol_now()) || $user->admin) {print '<a href="'.$_SERVER["PHP_SELF"].'?id='.$object->id.'&action=cancel" class="butAction">'.$langs->trans("ActionCancelCP").'</a>';}
+                    	else {print '<a href="#" class="butActionRefused classfortooltip" title="'.$langs->trans("HolidayStarted").'">'.$langs->trans("ActionCancelCP").'</a>';}
                     }
                     if ($cancreate && $object->statut == Holiday::STATUS_CANCELED)
                     {
@@ -1517,4 +1517,4 @@ else
 // End of page
 llxFooter();
 
-if (is_object($db)) $db->close();
+if (is_object($db)) {$db->close();}
