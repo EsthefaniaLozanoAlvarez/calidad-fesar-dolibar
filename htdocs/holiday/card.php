@@ -272,9 +272,9 @@ if (empty($reshook))
 		$starthalfday = GETPOST('starthalfday');
 		$endhalfday = GETPOST('endhalfday');
 		$halfday = 0;
-		if ($starthalfday == 'afternoon' && $endhalfday == 'morning') $halfday = 2;
-		elseif ($starthalfday == 'afternoon') $halfday = -1;
-		elseif ($endhalfday == 'morning') $halfday = 1;
+		if ($starthalfday == 'afternoon' && $endhalfday == 'morning') {$halfday = 2;}
+		elseif ($starthalfday == 'afternoon') {$halfday = -1;}
+		elseif ($endhalfday == 'morning') {$halfday = 1;}
 
 	    // If no right to modify a request
 	    if (!$user->rights->holiday->write)
@@ -432,7 +432,7 @@ if (empty($reshook))
 
 	            // Subject
 				$societeName = $conf->global->MAIN_INFO_SOCIETE_NOM;
-	            if (!empty($conf->global->MAIN_APPLICATION_TITLE)) $societeName = $conf->global->MAIN_APPLICATION_TITLE;
+	            if (!empty($conf->global->MAIN_APPLICATION_TITLE)) {$societeName = $conf->global->MAIN_APPLICATION_TITLE;}
 
 	            $subject = $societeName." - ".$langs->transnoentitiesnoconv("HolidaysToValidate");
 
@@ -505,7 +505,7 @@ if (empty($reshook))
 
 		// Fill array 'array_options' with data from update form
 		$ret = $extrafields->setOptionalsFromPost(null, $object, GETPOST('attribute', 'none'));
-		if ($ret < 0) $error++;
+		if ($ret < 0) {$error++;}
 
 		if (!$error)
 		{
@@ -518,8 +518,8 @@ if (empty($reshook))
 			}
 		}
 
-		if ($error)
-			$action = 'edit_extras';
+		if ($error){
+			$action = 'edit_extras';}
 	}
 
 	// Approve leave request
@@ -590,7 +590,7 @@ if (empty($reshook))
 
 	                // Subject
 	    			$societeName = $conf->global->MAIN_INFO_SOCIETE_NOM;
-	                if (!empty($conf->global->MAIN_APPLICATION_TITLE)) $societeName = $conf->global->MAIN_APPLICATION_TITLE;
+	                if (!empty($conf->global->MAIN_APPLICATION_TITLE)) {$societeName = $conf->global->MAIN_APPLICATION_TITLE;}
 
 	                $subject = $societeName." - ".$langs->transnoentitiesnoconv("HolidaysValidated");
 
@@ -678,7 +678,7 @@ if (empty($reshook))
 
 	    	            // Subject
 	    				$societeName = $conf->global->MAIN_INFO_SOCIETE_NOM;
-	    	            if (!empty($conf->global->MAIN_APPLICATION_TITLE)) $societeName = $conf->global->MAIN_APPLICATION_TITLE;
+	    	            if (!empty($conf->global->MAIN_APPLICATION_TITLE)) {$societeName = $conf->global->MAIN_APPLICATION_TITLE;}
 
 	    	            $subject = $societeName." - ".$langs->transnoentitiesnoconv("HolidaysRefused");
 
