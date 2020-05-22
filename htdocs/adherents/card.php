@@ -561,7 +561,7 @@ if (empty($reshook))
 			setEventMessages($langs->trans("ErrorBadEMail", $email), null, 'errors');
 		}
 		$public = 0;
-		if (isset($public)) $public = 1;
+		if (isset($public)) {$public = 1;}
 
 		if (!$error)
 		{
@@ -732,7 +732,7 @@ if (empty($reshook))
 					$arraydefaultmessage = null;
 					$labeltouse = $conf->global->ADHERENT_EMAIL_TEMPLATE_CANCELATION;
 
-					if (!empty($labeltouse)) $arraydefaultmessage = $formmail->getEMailTemplate($db, 'member', $user, $outputlangs, 0, 1, $labeltouse);
+					if (!empty($labeltouse)) {$arraydefaultmessage = $formmail->getEMailTemplate($db, 'member', $user, $outputlangs, 0, 1, $labeltouse);}
 
 					if (!empty($labeltouse) && is_object($arraydefaultmessage) && $arraydefaultmessage->id > 0)
 					{
@@ -844,7 +844,7 @@ if (is_object($objcanvas) && $objcanvas->displayCanvasExists($action))
 	{
 		$object = new Adherent($db);
 		$result = $object->fetch($id);
-		if ($result <= 0) dol_print_error('', $object->error);
+		if ($result <= 0) {dol_print_error('', $object->error);}
 	}
    	$objcanvas->assign_values($action, $object->id, $object->ref); // Set value for templates
     $objcanvas->display_canvas($action); // Show template
@@ -876,7 +876,7 @@ else
 
         if (!empty($socid)) {
             $object = new Societe($db);
-            if ($socid > 0) $object->fetch($socid);
+            if ($socid > 0) {$object->fetch($socid);}
 
             if (!($object->id > 0))
             {
@@ -925,7 +925,7 @@ else
 		print '<input type="hidden" name="token" value="'.newToken().'">';
 		print '<input type="hidden" name="action" value="add">';
 		print '<input type="hidden" name="socid" value="'.$socid.'">';
-		if ($backtopage) print '<input type="hidden" name="backtopage" value="'.($backtopage != '1' ? $backtopage : $_SERVER["HTTP_REFERER"]).'">';
+		if ($backtopage) {print '<input type="hidden" name="backtopage" value="'.($backtopage != '1' ? $backtopage : $_SERVER["HTTP_REFERER"]).'">';}
 
         dol_fiche_head('');
 
@@ -1008,7 +1008,7 @@ else
 		$object->country_id = $object->country_id ? $object->country_id : $mysoc->country_id;
 		print '<tr><td width="25%">'.$langs->trans('Country').'</td><td>';
 		print $form->select_country(GETPOST('country_id', 'alpha') ?GETPOST('country_id', 'alpha') : $object->country_id, 'country_id');
-		if ($user->admin) print info_admin($langs->trans("YouCanChangeValuesForThisListFromDictionarySetup"), 1);
+		if ($user->admin) {print info_admin($langs->trans("YouCanChangeValuesForThisListFromDictionarySetup"), 1);}
 		print '</td></tr>';
 
 		// State
@@ -1163,7 +1163,7 @@ else
 		print '<input type="hidden" name="action" value="update" />';
 		print '<input type="hidden" name="rowid" value="'.$id.'" />';
 		print '<input type="hidden" name="statut" value="'.$object->statut.'" />';
-		if ($backtopage) print '<input type="hidden" name="backtopage" value="'.($backtopage != '1' ? $backtopage : $_SERVER["HTTP_REFERER"]).'">';
+		if ($backtopage) {print '<input type="hidden" name="backtopage" value="'.($backtopage != '1' ? $backtopage : $_SERVER["HTTP_REFERER"]).'">';}
 
 		dol_fiche_head($head, 'general', $langs->trans("Member"), 0, 'user');
 
@@ -1233,9 +1233,9 @@ else
 		print $form->showphoto('memberphoto', $object)."\n";
 		if ($caneditfieldmember)
 		{
-			if ($object->photo) print "<br>\n";
+			if ($object->photo) {print "<br>\n";}
 			print '<table class="nobordernopadding">';
-			if ($object->photo) print '<tr><td><input type="checkbox" class="flat photodelete" name="deletephoto" id="photodelete"> '.$langs->trans("Delete").'<br><br></td></tr>';
+			if ($object->photo) {print '<tr><td><input type="checkbox" class="flat photodelete" name="deletephoto" id="photodelete"> '.$langs->trans("Delete").'<br><br></td></tr>';}
 			print '<tr><td>'.$langs->trans("PhotoFile").'</td></tr>';
 			print '<tr><td><input type="file" class="flat" name="photo" id="photoinput"></td></tr>';
 			print '</table>';
@@ -1261,7 +1261,7 @@ else
 		//$object->country_id=$object->country_id?$object->country_id:$mysoc->country_id;    // In edit mode we don't force to company country if not defined
 		print '<tr><td>'.$langs->trans('Country').'</td><td>';
 		print $form->select_country(isset($_POST["country_id"]) ? $_POST["country_id"] : $object->country_id, 'country_id');
-		if ($user->admin) print info_admin($langs->trans("YouCanChangeValuesForThisListFromDictionarySetup"), 1);
+		if ($user->admin) {print info_admin($langs->trans("YouCanChangeValuesForThisListFromDictionarySetup"), 1);}
 		print '</td></tr>';
 
 		// State
@@ -1283,7 +1283,7 @@ else
 
         if (!empty($conf->socialnetworks->enabled)) {
 			foreach ($socialnetworks as $key => $value) {
-                if (!$value['active']) break;
+                if (!$value['active']) {break;}
 				print '<tr><td>'.$langs->trans($value['label']).'</td><td><input type="text" name="'.$key.'" class="minwidth100" value="'.(isset($_POST[$key]) ?GETPOST($key) : $object->socialnetworks[$key]).'"></td></tr>';
 			}
 		}
@@ -1339,7 +1339,7 @@ else
 		{
 			$form->form_users($_SERVER['PHP_SELF'].'?rowid='.$object->id, $object->user_id, 'none');
 		}
-		else print $langs->trans("NoDolibarrAccess");
+		else {print $langs->trans("NoDolibarrAccess");}
 		print '</td></tr>';
 
 		// Other attributes. Fields from hook formObjectOptions and Extrafields.
@@ -1398,7 +1398,7 @@ else
 				include_once DOL_DOCUMENT_ROOT.'/core/lib/functions2.lib.php';
 				$login = dol_buildlogin($object->lastname, $object->firstname);
 			}
-			if (empty($login)) $login = strtolower(substr($object->firstname, 0, 4)).strtolower(substr($object->lastname, 0, 4));
+			if (empty($login)) {$login = strtolower(substr($object->firstname, 0, 4)).strtolower(substr($object->lastname, 0, 4));}
 
 			// Create a form array
 			$formquestion = array(
@@ -1407,8 +1407,8 @@ else
 			$text = $langs->trans("ConfirmCreateLogin").'<br>';
 			if (!empty($conf->societe->enabled))
 			{
-				if ($object->socid > 0) $text .= $langs->trans("UserWillBeExternalUser");
-				else $text .= $langs->trans("UserWillBeInternalUser");
+				if ($object->socid > 0) {$text .= $langs->trans("UserWillBeExternalUser");}
+				else {$text .= $langs->trans("UserWillBeInternalUser");}
 			}
 			print $form->formconfirm($_SERVER["PHP_SELF"]."?rowid=".$object->id, $langs->trans("CreateDolibarrLogin"), $text, "confirm_create_user", $formquestion, 'yes');
 		}
