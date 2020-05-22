@@ -57,10 +57,10 @@ $search_all = trim(GETPOST("search_all", 'alpha'));
 $search = array();
 foreach ($object->fields as $key => $val)
 {
-	if (GETPOST('search_'.$key, 'alpha')) $search[$key] = GETPOST('search_'.$key, 'alpha');
+	if (GETPOST('search_'.$key, 'alpha')) {$search[$key] = GETPOST('search_'.$key, 'alpha');}
 }
 
-if (empty($action) && empty($id) && empty($ref)) $action = 'view';
+if (empty($action) && empty($id) && empty($ref)) {$action = 'view';}
 
 // Load object
 include DOL_DOCUMENT_ROOT.'/core/actions_fetchobject.inc.php'; // Must be include, not include_once  // Must be include, not include_once. Include fetch and fetch_thirdparty but not fetch_optionals
@@ -74,7 +74,7 @@ include DOL_DOCUMENT_ROOT.'/core/actions_fetchobject.inc.php'; // Must be includ
 
 $parameters = array();
 $reshook = $hookmanager->executeHooks('doActions', $parameters, $object, $action); // Note that $action and $object may have been modified by some hooks
-if ($reshook < 0) setEventMessages($hookmanager->error, $hookmanager->errors, 'errors');
+if ($reshook < 0) {setEventMessages($hookmanager->error, $hookmanager->errors, 'errors');}
 
 if (empty($reshook))
 {
@@ -84,8 +84,8 @@ if (empty($reshook))
     $permissiontodelete = $user->rights->mymodule->delete || ($permissiontoadd && $object->status == 0);
     $backurlforlist = dol_buildpath('/mymodule/myobject_list.php', 1);
     if (empty($backtopage)) {
-        if (empty($id)) $backtopage = $backurlforlist;
-        else $backtopage = dol_buildpath('/mymodule/myobject_card.php', 1).($id > 0 ? $id : '__ID__');
+        if (empty($id)) {$backtopage = $backurlforlist;}
+        else {$backtopage = dol_buildpath('/mymodule/myobject_card.php', 1).($id > 0 ? $id : '__ID__');}
     }
     $triggermodname = 'MYMODULE_MYOBJECT_MODIFY'; // Name of trigger action code to execute when we modify record
 
@@ -234,8 +234,8 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 	// Call Hook formConfirm
 	$parameters = array('formConfirm' => $formconfirm, 'lineid' => $lineid);
 	$reshook = $hookmanager->executeHooks('formConfirm', $parameters, $object, $action); // Note that $action and $object may have been modified by hook
-	if (empty($reshook)) $formconfirm .= $hookmanager->resPrint;
-	elseif ($reshook > 0) $formconfirm = $hookmanager->resPrint;
+	if (empty($reshook)) {$formconfirm .= $hookmanager->resPrint;}
+	elseif ($reshook > 0) {$formconfirm = $hookmanager->resPrint;}
 
 	// Print form confirm
 	print $formconfirm;
@@ -278,7 +278,7 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
     	print '<div class="tabsAction">'."\n";
     	$parameters = array();
     	$reshook = $hookmanager->executeHooks('addMoreActionsButtons', $parameters, $object, $action); // Note that $action and $object may have been modified by hook
-    	if ($reshook < 0) setEventMessages($hookmanager->error, $hookmanager->errors, 'errors');
+    	if ($reshook < 0) {setEventMessages($hookmanager->error, $hookmanager->errors, 'errors');}
 
     	if (empty($reshook))
     	{
