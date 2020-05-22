@@ -768,39 +768,7 @@ else
                     }
                 }
             }
-            // if (! empty($conf->socialnetworks->enabled))
-            // {
-            // 	// Jabber
-            // 	if (! empty($conf->global->SOCIALNETWORKS_JABBER))
-            // 	{
-            // 		print '<tr><td><label for="skype">'.$form->editfieldkey('Jabber', 'jabberid', '', $object, 0).'</label></td>';
-            // 		print '<td colspan="3"><input type="text" name="jabberid" id="jabberid" class="minwidth100" maxlength="80" value="'.dol_escape_htmltag(GETPOSTISSET("jabberid")?GETPOST("jabberid", 'alpha'):$object->jabberid).'"></td></tr>';
-            // 	}
-            // 	// Skype
-            // 	if (! empty($conf->global->SOCIALNETWORKS_SKYPE))
-            // 	{
-            // 		print '<tr><td><label for="skype">'.$form->editfieldkey('Skype', 'skype', '', $object, 0).'</label></td>';
-            // 		print '<td colspan="3"><input type="text" name="skype" id="skype" class="minwidth100" maxlength="80" value="'.dol_escape_htmltag(GETPOSTISSET("skype")?GETPOST("skype", 'alpha'):$object->skype).'"></td></tr>';
-            // 	}
-            // 	// Twitter
-            // 	if (! empty($conf->global->SOCIALNETWORKS_TWITTER))
-            // 	{
-            // 		print '<tr><td><label for="twitter">'.$form->editfieldkey('Twitter', 'twitter', '', $object, 0).'</label></td>';
-            // 		print '<td colspan="3"><input type="text" name="twitter" id="twitter" class="minwidth100" maxlength="80" value="'.dol_escape_htmltag(GETPOSTISSET("twitter")?GETPOST("twitter", 'alpha'):$object->twitter).'"></td></tr>';
-            // 	}
-            // 	// Facebook
-            // 	if (! empty($conf->global->SOCIALNETWORKS_FACEBOOK))
-            // 	{
-            // 		print '<tr><td><label for="facebook">'.$form->editfieldkey('Facebook', 'facebook', '', $object, 0).'</label></td>';
-            // 		print '<td colspan="3"><input type="text" name="facebook" id="facebook" class="minwidth100" maxlength="80" value="'.dol_escape_htmltag(GETPOSTISSET("facebook")?GETPOST("facebook", 'alpha'):$object->facebook).'"></td></tr>';
-            // 	}
-            //     // LinkedIn
-            //     if (! empty($conf->global->SOCIALNETWORKS_LINKEDIN))
-            //     {
-            //         print '<tr><td><label for="linkedin">'.$form->editfieldkey('LinkedIn', 'linkedin', '', $object, 0).'</label></td>';
-            //         print '<td colspan="3"><input type="text" name="linkedin" id="linkedin" class="minwidth100" maxlength="80" value="'.dol_escape_htmltag(GETPOSTISSET("linkedin")?GETPOST("linkedin", 'alpha'):$object->linkedin).'"></td></tr>';
-            //     }
-            // }
+            
 
             // Visibility
             print '<tr><td><label for="priv">'.$langs->trans("ContactVisibility").'</label></td><td colspan="3">';
@@ -1052,7 +1020,7 @@ else
             	if (empty($noemail) && !empty($object->email))
             	{
             		$sql = "SELECT COUNT(*) as nb FROM ".MAIN_DB_PREFIX."mailing_unsubscribe WHERE entity IN (".getEntity('mailing').") AND email = '".$db->escape($object->email)."'";
-            		//print $sql;
+            	
             		$resql = $db->query($sql);
             		if ($resql)
             		{
@@ -1084,39 +1052,7 @@ else
                     }
                 }
             }
-            // if (! empty($conf->socialnetworks->enabled))
-            // {
-            // 	// Jabber ID
-            // 	if (! empty($conf->global->SOCIALNETWORKS_JABBER))
-            // 	{
-            // 		print '<tr><td><label for="jabberid">'.$form->editfieldkey('Jabber', 'jabberid', '', $object, 0).'</label></td>';
-            // 		print '<td><input type="text" name="jabberid" id="jabberid" class="minwidth100" maxlength="80" value="'.dol_escape_htmltag(GETPOSTISSET("jabberid")?GETPOST("jabberid", 'alpha'):$object->jabberid).'"></td></tr>';
-            // 	}
-            // 	// Skype
-            // 	if (! empty($conf->global->SOCIALNETWORKS_SKYPE))
-            // 	{
-            // 		print '<tr><td><label for="skype">'.$form->editfieldkey('Skype', 'skype', '', $object, 0).'</label></td>';
-            // 		print '<td><input type="text" name="skype" id="skype" class="minwidth100" maxlength="80" value="'.dol_escape_htmltag(GETPOSTISSET("skype")?GETPOST("skype", 'alpha'):$object->skype).'"></td></tr>';
-            // 	}
-            // 	// Twitter
-            // 	if (! empty($conf->global->SOCIALNETWORKS_TWITTER))
-            // 	{
-            // 		print '<tr><td><label for="twitter">'.$form->editfieldkey('Twitter', 'twitter', '', $object, 0).'</label></td>';
-            // 		print '<td><input type="text" name="twitter" id="twitter" class="minwidth100" maxlength="80" value="'.dol_escape_htmltag(GETPOSTISSET("twitter")?GETPOST("twitter", 'alpha'):$object->twitter).'"></td></tr>';
-            // 	}
-            // 	// Facebook
-            //     if (! empty($conf->global->SOCIALNETWORKS_FACEBOOK))
-            //     {
-            //         print '<tr><td><label for="facebook">'.$form->editfieldkey('Facebook', 'facebook', '', $object, 0).'</label></td>';
-            //         print '<td><input type="text" name="facebook" id="facebook" class="minwidth100" maxlength="80" value="'.dol_escape_htmltag(GETPOST("facebook")?GETPOST("facebook", 'alpha'):$object->facebook).'"></td></tr>';
-            //     }
-            //     // LinkedIn
-            //     if (! empty($conf->global->SOCIALNETWORKS_LINKEDIN))
-            //     {
-            //         print '<tr><td><label for="linkedin">'.$form->editfieldkey('LinkedIn', 'linkedin', '', $object, 0).'</label></td>';
-            //         print '<td><input type="text" name="linkedin" id="linkedin" class="minwidth100" maxlength="80" value="'.dol_escape_htmltag(GETPOST("linkedin")?GETPOST("linkedin", 'alpha'):$object->linkedin).'"></td></tr>';
-            //     }
-            // }
+            
 
             // Visibility
             print '<tr><td><label for="priv">'.$langs->trans("ContactVisibility").'</label></td><td colspan="3">';
