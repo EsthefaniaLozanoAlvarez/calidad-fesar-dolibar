@@ -196,11 +196,7 @@ if (empty($reshook))
         $object->town = GETPOST("town", 'alpha');
         $object->country_id = GETPOST("country_id", 'int');
         $object->state_id = GETPOST("state_id", 'int');
-        //$object->jabberid		= GETPOST("jabberid", 'alpha');
-        //$object->skype		= GETPOST("skype", 'alpha');
-        //$object->twitter		= GETPOST("twitter", 'alpha');
-        //$object->facebook		= GETPOST("facebook", 'alpha');
-        //$object->linkedin		= GETPOST("linkedin", 'alpha');
+        
         $object->socialnetworks = array();
         if (!empty($conf->socialnetworks->enabled)) {
             foreach ($socialnetworks as $key => $value) {
@@ -398,11 +394,7 @@ if (empty($reshook))
 
             $object->email = GETPOST("email", 'alpha');
             $object->no_email = GETPOST("no_email", "int");
-            //$object->jabberid		= GETPOST("jabberid", 'alpha');
-            //$object->skype		= GETPOST("skype", 'alpha');
-            //$object->twitter		= GETPOST("twitter", 'alpha');
-            //$object->facebook		= GETPOST("facebook", 'alpha');
-            //$object->linkedin		= GETPOST("linkedin", 'alpha');
+            
             if (!empty($conf->socialnetworks->enabled)) {
                 foreach ($socialnetworks as $key => $value) {
                     if (GETPOSTISSET($key) && GETPOST($key, 'alphanohtml') != '') {
@@ -746,7 +738,7 @@ else
             	if (empty($noemail) && !empty($object->email))
             	{
             		$sql = "SELECT COUNT(*) as nb FROM ".MAIN_DB_PREFIX."mailing_unsubscribe WHERE entity IN (".getEntity('mailing').") AND email = '".$db->escape($object->email)."'";
-            		//print $sql;
+            		
             		$resql = $db->query($sql);
             		if ($resql)
             		{
