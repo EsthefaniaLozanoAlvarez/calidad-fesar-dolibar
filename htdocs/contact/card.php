@@ -1215,8 +1215,8 @@ else
             $text = $langs->trans("ConfirmCreateContact").'<br>';
             if (!empty($conf->societe->enabled))
             {
-                if ($object->socid > 0) $text .= $langs->trans("UserWillBeExternalUser");
-                else $text .= $langs->trans("UserWillBeInternalUser");
+                if ($object->socid > 0) {$text .= $langs->trans("UserWillBeExternalUser");}
+                else {$text .= $langs->trans("UserWillBeInternalUser");}
             }
             print $form->formconfirm($_SERVER["PHP_SELF"]."?id=".$object->id, $langs->trans("CreateDolibarrLogin"), $text, "confirm_create_user", $formquestion, 'yes');
         }
@@ -1229,8 +1229,8 @@ else
             $objsoc->fetch($object->socid);
             // Thirdparty
             $morehtmlref .= $langs->trans('ThirdParty').' : ';
-            if ($objsoc->id > 0) $morehtmlref .= $objsoc->getNomUrl(1, 'contact');
-            else $morehtmlref .= $langs->trans("ContactNotLinkedToCompany");
+            if ($objsoc->id > 0) {$morehtmlref .= $objsoc->getNomUrl(1, 'contact');}
+            else {$morehtmlref .= $langs->trans("ContactNotLinkedToCompany");}
         }
         $morehtmlref .= '</div>';
 
@@ -1323,7 +1323,7 @@ else
         {
             print '<tr><td>';
             if (!empty($conf->expedition->enabled)) { print $langs->trans("ContactForOrdersOrShipments"); }
-            else print $langs->trans("ContactForOrders");
+            else {print $langs->trans("ContactForOrders");}
             print '</td><td colspan="3">';
             $none = $langs->trans("NoContactForAnyOrder");
             if (!empty($conf->expedition->enabled)) { $none = $langs->trans("NoContactForAnyOrderOrShipments"); }
@@ -1352,7 +1352,7 @@ else
             $result = $dolibarr_user->fetch($object->user_id);
             print $dolibarr_user->getLoginUrl(1);
         }
-        else print $langs->trans("NoDolibarrAccess");
+        else {print $langs->trans("NoDolibarrAccess");}
         print '</td></tr>';
 
         print '<tr><td>';
