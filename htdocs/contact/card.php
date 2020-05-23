@@ -76,13 +76,13 @@ if (!empty($canvas))
 }
 
 // Security check
-if ($user->socid) $socid=$user->socid;
+if ($user->socid) {$socid=$user->socid;}
 $result = restrictedArea($user, 'contact', $id, 'socpeople&societe', '', '', 'rowid', $objcanvas); // If we create a contact with no company (shared contacts), no check on write permission
 
 // Initialize technical object to manage hooks of page. Note that conf->hooks_modules contains array of hook context
 $hookmanager->initHooks(array('contactcard','globalcard'));
 
-if ($id > 0) $object->fetch($id);
+if ($id > 0) {$object->fetch($id);}
 
 if (! ($object->id > 0) && $action == 'view')
 {
@@ -97,7 +97,7 @@ if (! ($object->id > 0) && $action == 'view')
 
 $parameters=array('id'=>$id, 'objcanvas'=>$objcanvas);
 $reshook=$hookmanager->executeHooks('doActions', $parameters, $object, $action);    // Note that $action and $object may have been modified by some hooks
-if ($reshook < 0) setEventMessages($hookmanager->error, $hookmanager->errors, 'errors');
+if ($reshook < 0) {setEventMessages($hookmanager->error, $hookmanager->errors, 'errors');}
 
 if (empty($reshook))
 {
@@ -183,7 +183,7 @@ if (empty($reshook))
 	{
 		$db->begin();
 
-        if ($canvas) $object->canvas = $canvas;
+        if ($canvas) {$object->canvas = $canvas;}
 
         $object->entity = (GETPOSTISSET('entity') ?GETPOST('entity', 'int') : $conf->entity);
         $object->socid			= GETPOST("socid", 'int');
@@ -269,8 +269,8 @@ if (empty($reshook))
         if (!$error && $id > 0)
         {
             $db->commit();
-            if (!empty($backtopage)) $url = $backtopage;
-            else $url = 'card.php?id='.$id;
+            if (!empty($backtopage)) {$url = $backtopage;}
+            else {$url = 'card.php?id='.$id;}
             header("Location: ".$url);
             exit;
         }
@@ -413,7 +413,7 @@ if (empty($reshook))
 
             // Fill array 'array_options' with data from add form
 			$ret = $extrafields->setOptionalsFromPost(null, $object);
-			if ($ret < 0) $error++;
+			if ($ret < 0) {$error++;}
 
 			if (!$error)
 			{
@@ -489,7 +489,7 @@ if (empty($reshook))
 
 
 $title = (!empty($conf->global->SOCIETE_ADDRESSES_MANAGEMENT) ? $langs->trans("Contacts") : $langs->trans("ContactsAddresses"));
-if (!empty($conf->global->MAIN_HTML_TITLE) && preg_match('/contactnameonly/', $conf->global->MAIN_HTML_TITLE) && $object->lastname) $title = $object->lastname;
+if (!empty($conf->global->MAIN_HTML_TITLE) && preg_match('/contactnameonly/', $conf->global->MAIN_HTML_TITLE) && $object->lastname) {$title = $object->lastname;}
 $help_url = 'EN:Module_Third_Parties|FR:Module_Tiers|ES:Empresas';
 llxHeader('', $title, $help_url);
 
